@@ -71,6 +71,16 @@ export default class App extends Component {
           galleryPhoto_8:null,
           galleryPhoto_9:null,
           galleryPhoto_10:null,
+          husbandShortName: "",
+          husbandAccount:"",
+          husbandBank:"",
+          husbandAccountName:"",
+          wifeShortName: "",
+          wifeBank:"",
+          wifeAccount:"",
+          wifeAccountName:"",
+          longitude:"",
+          latitude:""
 
         }} 
           onSubmit={(data, { setSubmitting }) => {
@@ -187,10 +197,29 @@ export default class App extends Component {
           }&galleryPhoto_10=${
             data.galleryPhoto_10 != null?
               data.galleryPhoto_10.name:""
+          }&husbandShortName=${
+            data.husbandShortName
+          }&husbandAccount=${
+            data.husbandAccount
+          }&husbandBank=${
+            data.husbandBank
+          }&husbandAccountName=${
+            data.husbandAccountName
+          }&wifeShortName=${
+            data.wifeShortName
+          }&wifeBank=${
+            data.wifeBank
+          }&wifeAccount=${
+            data.wifeAccount
+          }&wifeAccountName=${
+            data.wifeAccountName
+          }&longitude=${
+            data.longitude
+          }&latitude=${
+            data.latitude
           }
           `)
           .then(res=>{console.log(res)});
-
 
           setSubmitting(false);
         }}>
@@ -202,36 +231,57 @@ export default class App extends Component {
                   <h3>신랑 성함</h3>
                   <input name="husbandName" value={values.husbandName} onChange={handleChange}/>
                 </div>
+
                 <div>
-                  <h3>신랑 전화번호 (- 없이)</h3>
+                  <h3>신랑 이름 성빼고</h3>
+                  <input name="husbandShortName" value={values.husbandShortName} onChange={handleChange}/>
+                </div>
+                
+                <div>
+                  <h3>신랑 전화번호 (- 넣어서)</h3>
                   <input name="husbandPhone" value={values.husbandPhone} onChange={handleChange}/>
                 </div>
                 <div>
-                  <h3>신랑 인스타</h3>
+                  <h3>신랑 인스타 (x)</h3>
                   <input name="husbandInsta" value={values.husbandInsta} onChange={handleChange}/>
                 </div>
                 <div>
-                  <h3>신랑 페북</h3>
+                  <h3>신랑 페북 (x)</h3>
                   <input name="husbandFacebook" value={values.husbandFacebook} onChange={handleChange}/>
                 </div>
                 <div>
-                  <h3>신랑 카카오페이</h3>
+                  <h3><a href="https://zxing.org/w/decode.jspx" target="_blank">신랑 카카오페이</a></h3>
                   <input name="husbandKakaoPay" value={values.husbandKakaoPay} onChange={handleChange}/>
                 </div>
                 <div>
-                  <h3>신랑 프로필사진</h3>
+                  <h3>신랑 프로필사진 (x)</h3>
                   <input type="file" name="husbandPhoto"   
                     onChange={(event) =>{
                       setFieldValue("husbandPhoto", event.currentTarget.files[0]);
                     }}/>
                 </div>
                 <div>
-                  <h3>신랑 엄마 이름(성 빼고)</h3>
-                  <input name="husbandMama" value={values.husbandMama} onChange={handleChange}/>
+                  <h3>신랑 아빠 이름</h3>
+                  <input name="husbandPapa" value={values.husbandPapa} onChange={handleChange}/>
                 </div>
                 <div>
-                  <h3>신랑 아빠 이름(성 빼고)</h3>
-                  <input name="husbandPapa" value={values.husbandPapa} onChange={handleChange}/>
+                  <h3>신랑 엄마 이름</h3>
+                  <input name="husbandMama" value={values.husbandMama} onChange={handleChange}/>
+                </div>
+                
+                <div>
+                  <h3>신랑 은행</h3>
+                  <input name="husbandBank" value={values.husbandBank} onChange={handleChange}/>
+                </div>
+
+                <div>
+                  <h3>신랑 예금주</h3>
+                  <input name="husbandAccountName" value={values.husbandAccountName} onChange={handleChange}/>
+                </div>
+
+                <div>
+                  <h3>신랑 계좌번호</h3>
+                  <input name="husbandAccount" value={values.husbandAccount} onChange={handleChange}/>
                 </div>
 
                 <div>
@@ -239,40 +289,56 @@ export default class App extends Component {
                   <input name="wifeName" value={values.wifeName} onChange={handleChange}/>
                 </div>
                 <div>
+                  <h3>신부 이름 이름 성빼고</h3>
+                  <input name="wifeShortName" value={values.wifeShortName} onChange={handleChange}/>
+                </div>
+                <div>
                   <h3>신부 전화번호 (- 넣어서)</h3>
                   <input name="wifePhone" value={values.wifePhone} onChange={handleChange}/>
                 </div>
                 <div>
-                  <h3>신부 인스타</h3>
+                  <h3>신부 인스타 (x)</h3>
                   <input name="wifeInsta" value={values.wifeInsta} onChange={handleChange}/>
                 </div>
                 <div>
-                  <h3>신부 페북</h3>
+                  <h3>신부 페북 (x)</h3>
                   <input name="wifeFacebook" value={values.wifeFacebook} onChange={handleChange}/>
                 </div>
                 <div>
-                  <h3>신부 카카오페이</h3>
+                  <h3><a href="https://zxing.org/w/decode.jspx" target="_blank">신부 카카오페이</a></h3>
                   <input name="wifeKakaoPay" value={values.wifeKakaoPay} onChange={handleChange}/>
                 </div>
                 <div>
-                  <h3>신부 프로필사진</h3>
+                  <h3>신부 프로필사진 (x)</h3>
                   <input type="file" name="wifePhoto"   
                     onChange={(event) =>{
                       setFieldValue("wifePhoto", event.currentTarget.files[0]);
                     }}/>
                 </div>
                 <div>
-                  <h3>신부 엄마 이름(성 빼고)</h3>
+                  <h3>신부 아빠 이름</h3>
+                  <input name="wifePapa" value={values.wifePapa} onChange={handleChange}/>
+                </div>
+                <div>
+                  <h3>신부 엄마 이름</h3>
                   <input name="wifeMama" value={values.wifeMama} onChange={handleChange}/>
                 </div>
                 <div>
-                  <h3>신부 아빠 이름(성 빼고)</h3>
-                  <input name="wifePapa" value={values.wifePapa} onChange={handleChange}/>
+                  <h3>신부 은행</h3>
+                  <input name="wifeBank" value={values.wifeBank} onChange={handleChange}/>
+                </div>
+                <div>
+                  <h3>신부 예금주</h3>
+                  <input name="wifeAccountName" value={values.wifeAccountName} onChange={handleChange}/>
+                </div>
+                <div>
+                  <h3>신부 계좌번호</h3>
+                  <input name="wifeAccount" value={values.wifeAccount} onChange={handleChange}/>
                 </div>
                 
 
                 <div>
-                  <h3>결혼식 날짜 (2020-03-10 20:00:00))</h3>
+                  <h3>결혼식 날짜 (2020-03-10 20:00:00 오타 절대 금지)</h3>
                   <input name="weddingDate" value={values.weddingDate} onChange={handleChange}/>
                 </div>
                 <div>
@@ -292,6 +358,17 @@ export default class App extends Component {
                   <h3>결혼식장 주소</h3>
                   <input name="weddingAddress" value={values.weddingAddress} onChange={handleChange}/>
                 </div>
+
+                <div>
+                  <h3>위도 (ex: 37.565181)</h3>
+                  <input name="latitude" value={values.latitude} onChange={handleChange}/>
+                </div>
+
+                <div>
+                  <h3>경도 (ex: 126.995728)</h3>
+                  <input name="longitude" value={values.longitude} onChange={handleChange}/>
+                </div>
+
                 <div>
                   <h3>결혼식장 번호</h3>
                   <input name="weddingNumber" value={values.weddingNumber} onChange={handleChange}/>
@@ -435,10 +512,17 @@ export default class App extends Component {
                   }}
                   />
                 </div>
+         
+               
+              
+                
+
+                
+
                 
 
               </div>
-                <button type="submit" disabled={isSubmitting}>Submit</button>
+                <button type="submit" disabled={isSubmitting} style={{marginTop:30}}>Submit</button>
               </form>
             )
           }
